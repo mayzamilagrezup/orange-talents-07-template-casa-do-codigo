@@ -1,7 +1,7 @@
 package br.com.zupacademy.mayza.casadocodigo.controller;
 
-import br.com.zupacademy.mayza.casadocodigo.controller.dto.NovoAutorDto;
-import br.com.zupacademy.mayza.casadocodigo.controller.form.NovoAutorForm;
+import br.com.zupacademy.mayza.casadocodigo.dto.request.NovoAutorRequest;
+import br.com.zupacademy.mayza.casadocodigo.dto.response.NovoAutorResponse;
 import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
 import br.com.zupacademy.mayza.casadocodigo.repository.AutorRepository;
 import br.com.zupacademy.mayza.casadocodigo.validator.EmailValidator;
@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
@@ -28,9 +29,10 @@ public class AutorController {
     }
 
     @PostMapping
-    public ResponseEntity<NovoAutorDto> cadastrar(@RequestBody @Valid NovoAutorForm form) {
+    @Transactional
+    public ResponseEntity<NovoAutorResponse> cadastrar(@RequestBody @Valid NovoAutorRequest form) {
         Autor autor =  autorRepository.save(form.toAutor());
-        return ResponseEntity.ok(new NovoAutorDto(autor));
+        return ResponseEntity.ok(new NovoAutorResponse(autor));
 
     }
 

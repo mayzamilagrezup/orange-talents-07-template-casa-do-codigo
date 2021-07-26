@@ -1,10 +1,10 @@
-package br.com.zupacademy.mayza.casadocodigo.controller.dto;
+package br.com.zupacademy.mayza.casadocodigo.dto.response;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
 
 import java.time.LocalDateTime;
 
-public class NovoAutorDto {
+public class NovoAutorResponse {
 
     private Long id;
     private String nome;
@@ -13,7 +13,7 @@ public class NovoAutorDto {
     private LocalDateTime instanteCriado;
 
 
-    public NovoAutorDto(Autor autor) {
+    public NovoAutorResponse(Autor autor) {
         this.id = autor.getId();
         this.nome = autor.getNome();
         this.email = autor.getEmail();

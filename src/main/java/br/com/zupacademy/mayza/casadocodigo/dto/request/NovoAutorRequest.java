@@ -1,4 +1,4 @@
-package br.com.zupacademy.mayza.casadocodigo.controller.form;
+package br.com.zupacademy.mayza.casadocodigo.dto.request;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
 import org.hibernate.validator.constraints.Length;
@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-public class NovoAutorForm {
+public class NovoAutorRequest {
 
     @NotBlank
     private String nome;
@@ -19,7 +19,7 @@ public class NovoAutorForm {
     @Length(max = 400)
     private String descricao;
 
-    public NovoAutorForm(String nome, String email, String descricao) {
+    public NovoAutorRequest(String nome, String email, String descricao) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
