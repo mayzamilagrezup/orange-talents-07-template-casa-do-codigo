@@ -1,6 +1,7 @@
 package br.com.zupacademy.mayza.casadocodigo.dto.request;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
+import br.com.zupacademy.mayza.casadocodigo.validator.UniqueValid;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -13,6 +14,8 @@ public class NovoAutorRequest {
 
     @NotBlank
     @Email
+    @UniqueValid(domainClass = Autor.class, fieldName = "email",
+            message ="Já existe um autor com esse email cadastrado")
     private String email;
 
     @NotBlank
