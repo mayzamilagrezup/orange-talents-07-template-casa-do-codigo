@@ -1,6 +1,7 @@
 package br.com.zupacademy.mayza.casadocodigo.controller;
 
 import br.com.zupacademy.mayza.casadocodigo.dto.request.NovoLivroRequest;
+import br.com.zupacademy.mayza.casadocodigo.dto.response.DetalheLivroResponse;
 import br.com.zupacademy.mayza.casadocodigo.dto.response.ListaLivrosResponse;
 import br.com.zupacademy.mayza.casadocodigo.dto.response.NovoLivroResponse;
 import br.com.zupacademy.mayza.casadocodigo.modelo.Livro;
@@ -13,8 +14,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -39,6 +40,17 @@ public class LivroController {
         List<Livro> livros = livroRepository.findAll();
         List<ListaLivrosResponse> livrosDTO = livros.stream().map(ListaLivrosResponse::new).collect(Collectors.toList());
         return ResponseEntity.ok(livrosDTO);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalheLivroResponse> detalheLivro(@PathVariable Long id) {
+        Optional<Livro> livro = livroRepository.findById(id);
+        if (livro.isPresent()) {
+            return ResponseEntity.ok(new DetalheLivroResponse(livro.get()));
+        }
+
+        return ResponseEntity.notFound().build();
+
     }
 
 }

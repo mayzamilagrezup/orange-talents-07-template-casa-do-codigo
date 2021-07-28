@@ -1,8 +1,7 @@
 package br.com.zupacademy.mayza.casadocodigo.dto.response;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
-
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class NovoAutorResponse {
 
@@ -10,7 +9,7 @@ public class NovoAutorResponse {
     private String nome;
     private String email;
     private String descricao;
-    private LocalDateTime instanteCriado;
+    private String instanteCriado;
 
 
     public NovoAutorResponse(Autor autor) {
@@ -18,7 +17,7 @@ public class NovoAutorResponse {
         this.nome = autor.getNome();
         this.email = autor.getEmail();
         this.descricao = autor.getDescricao();
-        this.instanteCriado = autor.getInstanteCriado();
+        this.instanteCriado = autor.getInstanteCriado().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public Long getId() {
@@ -37,7 +36,7 @@ public class NovoAutorResponse {
         return descricao;
     }
 
-    public LocalDateTime getInstanteCriado() {
+    public String getInstanteCriado() {
         return instanteCriado;
     }
 }

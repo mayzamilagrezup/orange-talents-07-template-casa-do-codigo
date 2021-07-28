@@ -1,12 +1,12 @@
 package br.com.zupacademy.mayza.casadocodigo.dto.response;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Livro;
+
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 
-public class NovoLivroResponse {
+public class DetalheLivroResponse {
 
-    private Long id;
     private String titulo;
     private String resumo;
     private String sumario;
@@ -14,9 +14,10 @@ public class NovoLivroResponse {
     private Integer numeroPaginas;
     private String isbn;
     private String dataPublicacao;
+    private DetalheAutorResponse autorResponse;
 
-    public NovoLivroResponse(Livro livro) {
-        this.id = livro.getId();
+
+    public DetalheLivroResponse(Livro livro) {
         this.titulo = livro.getTitulo();
         this.resumo = livro.getResumo();
         this.sumario = livro.getSumario();
@@ -24,11 +25,8 @@ public class NovoLivroResponse {
         this.numeroPaginas = livro.getNumeroPaginas();
         this.isbn = livro.getIsbn();
         this.dataPublicacao = livro.getDataPublicacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.autorResponse = new DetalheAutorResponse(livro.getAutor());
 
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getTitulo() {
@@ -57,5 +55,9 @@ public class NovoLivroResponse {
 
     public String getDataPublicacao() {
         return dataPublicacao;
+    }
+
+    public DetalheAutorResponse getAutorResponse() {
+        return autorResponse;
     }
 }

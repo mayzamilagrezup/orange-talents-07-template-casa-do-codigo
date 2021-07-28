@@ -7,7 +7,6 @@ import br.com.zupacademy.mayza.casadocodigo.validator.IdValid;
 import br.com.zupacademy.mayza.casadocodigo.validator.UniqueValid;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.*;

@@ -1,6 +1,5 @@
 package br.com.zupacademy.mayza.casadocodigo.dto.request;
 
-import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
 import br.com.zupacademy.mayza.casadocodigo.modelo.Categoria;
 import br.com.zupacademy.mayza.casadocodigo.validator.UniqueValid;
 
