@@ -22,7 +22,7 @@ public class AutorController {
     @Transactional
     public ResponseEntity<NovoAutorResponse> cadastrar(@RequestBody @Valid NovoAutorRequest form) {
         Autor autor =  autorRepository.save(form.toAutor());
-        return ResponseEntity.ok(new NovoAutorResponse(autor));
+        return ResponseEntity.ok().body(new NovoAutorResponse(autor));
 
     }
 

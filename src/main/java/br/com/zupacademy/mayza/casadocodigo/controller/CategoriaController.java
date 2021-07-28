@@ -23,7 +23,7 @@ public class CategoriaController {
     @Transactional
     public ResponseEntity<NovaCategoriaResponse> cadastrar(@RequestBody @Valid NovaCategoriaRequest form) {
         Categoria categoria =  categoriaRepository.save(form.toCategoria());
-        return ResponseEntity.ok(new NovaCategoriaResponse(categoria));
+        return ResponseEntity.ok().body(new NovaCategoriaResponse(categoria));
 
     }
 }

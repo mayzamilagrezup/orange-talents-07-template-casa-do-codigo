@@ -33,7 +33,7 @@ public class EstadoController {
         if(!optional.isPresent()) {
             Estado estado = request.toEstado(paisRepository);
             estadoRepository.save(estado);
-            return ResponseEntity.ok(new NovoEstadoResponse(estado));
+            return ResponseEntity.ok().body(new NovoEstadoResponse(estado));
         }
         return ResponseEntity.badRequest().build();
 

@@ -25,7 +25,7 @@ public class PaisController {
     @Transactional
     public ResponseEntity<NovoPaisResponse> cadastrar(@RequestBody @Valid NovoPaisRequest request) {
         Pais pais =  paisRepository.save(request.toPais());
-        return ResponseEntity.ok(new NovoPaisResponse(pais));
+        return ResponseEntity.ok().body(new NovoPaisResponse(pais));
 
     }
 }

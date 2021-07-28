@@ -32,21 +32,21 @@ public class LivroController {
     @Transactional
     public ResponseEntity<NovoLivroResponse> cadastrar(@RequestBody @Valid NovoLivroRequest request) {
         Livro livro = livroRepository.save(request.toLivro(manager));
-        return ResponseEntity.ok(new NovoLivroResponse(livro));
+        return ResponseEntity.ok().body(new NovoLivroResponse(livro));
     }
 
     @GetMapping
     public ResponseEntity<List<ListaLivrosResponse>> listarLivros() {
         List<Livro> livros = livroRepository.findAll();
         List<ListaLivrosResponse> livrosDTO = livros.stream().map(ListaLivrosResponse::new).collect(Collectors.toList());
-        return ResponseEntity.ok(livrosDTO);
+        return ResponseEntity.ok().body(livrosDTO);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DetalheLivroResponse> detalheLivro(@PathVariable Long id) {
         Optional<Livro> livro = livroRepository.findById(id);
         if (livro.isPresent()) {
-            return ResponseEntity.ok(new DetalheLivroResponse(livro.get()));
+            return ResponseEntity.ok().body(new DetalheLivroResponse(livro.get()));
         }
 
         return ResponseEntity.notFound().build();
