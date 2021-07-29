@@ -10,6 +10,7 @@ import java.util.List;
 public class IdValidValidator implements ConstraintValidator<IdValid, Object> {
 
     private String domainAttribute;
+    private boolean isRequired;
     private Class<?> klass;
     @PersistenceContext
     EntityManager manager;
@@ -17,11 +18,17 @@ public class IdValidValidator implements ConstraintValidator<IdValid, Object> {
     @Override
     public void initialize(IdValid constraintAnnotation) {
         domainAttribute = constraintAnnotation.fieldName();
+        isRequired = constraintAnnotation.required();
         klass = constraintAnnotation.domainClass();
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext constraintValidatorContext) {
+
+        if(!isRequired && value == null){
+            return true;
+        }
+
         Query query = manager.createQuery("select 1 from " + klass.getName()+ " where " + domainAttribute+"=:value");
         query.setParameter("value", value);
         List<?> list = query.getResultList();
