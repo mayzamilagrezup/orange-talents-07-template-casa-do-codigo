@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -27,7 +26,6 @@ public class EstadoController {
     PaisRepository paisRepository;
 
     @PostMapping
-    @Transactional
     public ResponseEntity<NovoEstadoResponse> cadastrar(@RequestBody @Valid NovoEstadoRequest request) {
         Optional<Estado> optional = estadoRepository.findByNomeAndPaisId(request.getNome(), request.getIdPais());
         if(!optional.isPresent()) {

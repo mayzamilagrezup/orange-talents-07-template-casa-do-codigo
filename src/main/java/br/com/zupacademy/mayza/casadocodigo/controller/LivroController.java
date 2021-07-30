@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,6 @@ public class LivroController {
     EntityManager manager;
 
     @PostMapping
-    @Transactional
     public ResponseEntity<NovoLivroResponse> cadastrar(@RequestBody @Valid NovoLivroRequest request) {
         Livro livro = livroRepository.save(request.toLivro(manager));
         return ResponseEntity.ok().body(new NovoLivroResponse(livro));

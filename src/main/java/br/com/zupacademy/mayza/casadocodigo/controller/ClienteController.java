@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 
@@ -28,10 +27,7 @@ public class ClienteController {
   @PersistenceContext
    EntityManager manager;
 
-
-
    @PostMapping
-   @Transactional
    public ResponseEntity<NovoClienteResponse> cadastrar(@RequestBody @Valid NovoClienteRequest request) {
         Cliente cliente = clienteRepository.save(request.toCliente(manager));
         return ResponseEntity.ok().body(new NovoClienteResponse(cliente));

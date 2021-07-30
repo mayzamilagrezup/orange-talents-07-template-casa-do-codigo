@@ -10,18 +10,34 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String titulo;
+
+    @Column(nullable = false)
     private String resumo;
+
+    @Column(nullable = false)
     private String sumario;
+
+    @Column(nullable = false)
     private BigDecimal preco;
+
+    @Column(nullable = false)
     private Integer numeroPaginas;
+
+    @Column(nullable = false, unique = true)
     private String isbn;
+
+    @Column(nullable = false)
     private LocalDate dataPublicacao;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Categoria categoria;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Autor autor;
 
     @Deprecated

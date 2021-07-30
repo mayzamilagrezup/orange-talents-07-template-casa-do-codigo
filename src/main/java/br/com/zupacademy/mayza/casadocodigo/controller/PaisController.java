@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
@@ -22,7 +21,6 @@ public class PaisController {
     PaisRepository paisRepository;
 
     @PostMapping
-    @Transactional
     public ResponseEntity<NovoPaisResponse> cadastrar(@RequestBody @Valid NovoPaisRequest request) {
         Pais pais =  paisRepository.save(request.toPais());
         return ResponseEntity.ok().body(new NovoPaisResponse(pais));
