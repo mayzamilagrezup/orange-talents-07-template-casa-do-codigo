@@ -1,4 +1,4 @@
-package br.com.zupacademy.mayza.casadocodigo.dto.response;
+package br.com.zupacademy.mayza.casadocodigo.controller.response;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Livro;
 
@@ -8,8 +8,8 @@ public class ListaLivrosResponse {
     private String titulo;
 
     public ListaLivrosResponse(Livro livro) {
-      this.id = livro.getId();
-      this.titulo = livro.getTitulo();
+        this.id = livro.getId();
+        this.titulo = livro.getTitulo();
     }
 
     public Long getId() {

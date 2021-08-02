@@ -1,4 +1,4 @@
-package br.com.zupacademy.mayza.casadocodigo.dto.response;
+package br.com.zupacademy.mayza.casadocodigo.controller.response;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Livro;
 

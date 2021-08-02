@@ -1,4 +1,4 @@
-package br.com.zupacademy.mayza.casadocodigo.dto.request;
+package br.com.zupacademy.mayza.casadocodigo.controller.request;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Estado;
 import br.com.zupacademy.mayza.casadocodigo.modelo.Pais;

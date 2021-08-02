@@ -1,18 +1,20 @@
 package br.com.zupacademy.mayza.casadocodigo.controller;
 
-import br.com.zupacademy.mayza.casadocodigo.dto.request.NovoLivroRequest;
-import br.com.zupacademy.mayza.casadocodigo.dto.response.DetalheLivroResponse;
-import br.com.zupacademy.mayza.casadocodigo.dto.response.ListaLivrosResponse;
-import br.com.zupacademy.mayza.casadocodigo.dto.response.NovoLivroResponse;
+import br.com.zupacademy.mayza.casadocodigo.controller.request.NovoLivroRequest;
+import br.com.zupacademy.mayza.casadocodigo.controller.response.DetalheLivroResponse;
+import br.com.zupacademy.mayza.casadocodigo.controller.response.ListaLivrosResponse;
 import br.com.zupacademy.mayza.casadocodigo.modelo.Livro;
 import br.com.zupacademy.mayza.casadocodigo.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,9 +30,11 @@ public class LivroController {
     EntityManager manager;
 
     @PostMapping
-    public ResponseEntity<NovoLivroResponse> cadastrar(@RequestBody @Valid NovoLivroRequest request) {
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoLivroRequest request) {
         Livro livro = livroRepository.save(request.toLivro(manager));
-        return ResponseEntity.ok().body(new NovoLivroResponse(livro));
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(livro.getId()).toUri();
+        return ResponseEntity.ok().header(HttpHeaders.LOCATION, uri.toString()).build();
     }
 
     @GetMapping
@@ -46,9 +50,7 @@ public class LivroController {
         if (livro.isPresent()) {
             return ResponseEntity.ok().body(new DetalheLivroResponse(livro.get()));
         }
-
         return ResponseEntity.notFound().build();
-
     }
 
 }

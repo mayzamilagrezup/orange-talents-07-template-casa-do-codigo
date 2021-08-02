@@ -1,4 +1,4 @@
-package br.com.zupacademy.mayza.casadocodigo.dto.request;
+package br.com.zupacademy.mayza.casadocodigo.controller.request;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
 import br.com.zupacademy.mayza.casadocodigo.validator.UniqueValid;
@@ -8,6 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 public class NovoAutorRequest {
+
 
     @NotBlank
     private String nome;
@@ -31,5 +32,4 @@ public class NovoAutorRequest {
     public Autor toAutor() {
         return new Autor(this.nome, this.email, this.descricao);
     }
-
 }

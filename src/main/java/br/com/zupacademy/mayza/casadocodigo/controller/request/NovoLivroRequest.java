@@ -1,4 +1,4 @@
-package br.com.zupacademy.mayza.casadocodigo.dto.request;
+package br.com.zupacademy.mayza.casadocodigo.controller.request;
 
 import br.com.zupacademy.mayza.casadocodigo.modelo.Autor;
 import br.com.zupacademy.mayza.casadocodigo.modelo.Categoria;
