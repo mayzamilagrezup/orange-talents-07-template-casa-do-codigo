@@ -7,6 +7,7 @@ import br.com.zupacademy.mayza.casadocodigo.validator.IdValid;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Locale;
 
 public class NovoEstadoRequest {
 
@@ -19,7 +20,7 @@ public class NovoEstadoRequest {
     private Long idPais;
 
     public NovoEstadoRequest(String nome, Long idPais) {
-        this.nome = nome;
+        this.nome = nome.toLowerCase(Locale.ROOT).trim();
         this.idPais = idPais;
     }
 
